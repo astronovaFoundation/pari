@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #2D2C40;
+  --secondary: #7a7992;
+  --primary: #A94CCC; 
+  --secondary-background: #f5f5f9;
+}
+
+html,body{
+  scroll-behavior: smooth;
+  background: #ffffff;
+  color: #2D2C40;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
+  --color-primary: var(--primary);
+  --font-poppins: var(--font-poppins);
+  --font-arizonia: var(--font-arizonia);
+}
+
+.secondary-background{
+  background: var(--secondary-background);
+}
+
+.primary{
+  background: var(--primary);
+}
+
+.primary-gradient{
+  background: linear-gradient(90deg, #AAAAFF 0%, #FBBAF8 100%);
+}
+
+/* globals.css or your global stylesheet */
+.bulletActiveClass{
+  background: #A94CCC !important;
+  opacity: 1 !important; /* ensure visible */
+}
+
+.btn-secondary{
+  background: #8ED4CC
+}
+.btn-gradient{
+  background: linear-gradient(90deg, #AAAAFF 0%, #FBBAF8 50%,#AAAAFF 100%);
+  color: white;
+}
+
+/* Enhanced animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Ensure loader overlays header/footer */
+  background-color: white;
+}
+
+.loader-container {
+  --uib-center: calc(var(--uib-size) / 2 - var(--uib-size) / 5 / 2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  animation: rotate calc(var(--uib-speed) * 3) linear infinite;
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.dot::before {
+  content: '';
+  height: 20%;
+  width: 20%;
+  border-radius: 50%;
+  background-color: var(--uib-color);
+  animation: oscillate var(--uib-speed) ease-in-out infinite alternate;
+  transition: background-color 0.3s ease;
+}
+
+.dot:nth-child(1)::before { transform: translateX(var(--uib-center)); }
+.dot:nth-child(2) { transform: rotate(45deg); }
+.dot:nth-child(2)::before { transform: translateX(var(--uib-center)); animation-delay: calc(var(--uib-speed) * -0.125); }
+.dot:nth-child(3) { transform: rotate(90deg); }
+.dot:nth-child(3)::before { transform: translateX(var(--uib-center)); animation-delay: calc(var(--uib-speed) * -0.25); }
+.dot:nth-child(4) { transform: rotate(135deg); }
+.dot:nth-child(4)::before { transform: translateX(var(--uib-center)); animation-delay: calc(var(--uib-speed) * -0.375); }
+.dot:nth-child(5) { transform: rotate(180deg); }
+.dot:nth-child(5)::before { transform: translateX(var(--uib-center)); animation-delay: calc(var(--uib-speed) * -0.5); }
+.dot:nth-child(6) { transform: rotate(225deg); }
+.dot:nth-child(6)::before { transform: translateX(var(--uib-center)); animation-delay: calc(var(--uib-speed) * -0.625); }
+.dot:nth-child(7) { transform: rotate(270deg); }
+.dot:nth-child(7)::before { transform: translateX(var(--uib-center)); animation-delay: calc(var(--uib-speed) * -0.75); }
+.dot:nth-child(8) { transform: rotate(315deg); }
+.dot:nth-child(8)::before { transform: translateX(var(--uib-center)); animation-delay: calc(var(--uib-speed) * -0.875); }
+
+.loader-label {
+  margin-top: 16px;
+  color: var(--color-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes oscillate {
+  0% { transform: translateX(var(--uib-center)) scale(0); opacity: 0.25; }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
