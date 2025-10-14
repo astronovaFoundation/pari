@@ -1,6 +1,6 @@
 # Pari Eyebrow Threading Palace - Next.js Application
 
-A modern, full-featured beauty salon booking platform built with Next.js 15, Sanity CMS, Better Auth, and Square payments.
+A modern, full-featured beauty salon booking platform built with Next.js 15, Sanity CMS, and Square payments.
 
 ## 🚀 Features
 
@@ -19,12 +19,6 @@ A modern, full-featured beauty salon booking platform built with Next.js 15, San
   - Location & Hours
   - Gallery
 
-### Authentication
-- **Better Auth Integration**
-- Email & Password login
-- Phone number support (optional)
-- Secure session management
-
 ### Booking System
 - Service selection
 - Date & time picker
@@ -41,9 +35,7 @@ A modern, full-featured beauty salon booking platform built with Next.js 15, San
 ## 🛠️ Tech Stack
 
 - **Framework**: Next.js 15.5.4 (App Router)
-- **Database**: PostgreSQL with Prisma ORM
 - **CMS**: Sanity.io
-- **Authentication**: Better Auth
 - **Payments**: Square
 - **Styling**: Tailwind CSS v4
 - **UI Components**: Custom components with Lucide icons
@@ -56,14 +48,11 @@ A modern, full-featured beauty salon booking platform built with Next.js 15, San
 Pari/
 ├── src/
 │   ├── app/
-│   │   ├── (auth)/          # Authentication pages
-│   │   │   └── auth/
 │   │   ├── (site)/          # Main site pages
 │   │   │   ├── booking/     # Booking flow
 │   │   │   ├── dashboard/   # User dashboard
 │   │   │   └── page.tsx     # Homepage
 │   │   ├── api/             # API routes
-│   │   │   ├── auth/        # Better Auth API
 │   │   │   ├── newsletter/  # Newsletter subscription
 │   │   │   └── square/      # Square payments & bookings
 │   │   └── studio/          # Sanity Studio
@@ -72,9 +61,6 @@ Pari/
 │   │   ├── sections/        # Page sections
 │   │   └── ui/              # Reusable UI components
 │   ├── lib/
-│   │   ├── auth.ts          # Better Auth config
-│   │   ├── auth-client.ts   # Client-side auth
-│   │   ├── prisma.ts        # Prisma client
 │   │   ├── square.ts        # Square SDK
 │   │   └── utils.ts         # Utility functions
 │   ├── sanity/
@@ -91,7 +77,6 @@ Pari/
 ### 1. Prerequisites
 
 - Node.js 18+ or Bun
-- PostgreSQL database
 - Sanity account
 - Square account
 
@@ -100,13 +85,6 @@ Pari/
 Create a `.env` file in the root directory:
 
 ```env
-# Database
-DATABASE_URL="postgresql://user:password@localhost:5432/pari"
-
-# Better Auth
-BETTER_AUTH_SECRET="your-secret-key-here"
-BETTER_AUTH_URL="http://localhost:3000"
-
 # Square
 SQUARE_ACCESS_TOKEN="your-square-access-token"
 SQUARE_ENVIRONMENT="sandbox" # or "production"
@@ -129,15 +107,6 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 npm install
 # or
 bun install
-
-# Generate Prisma client
-npx prisma generate
-
-# Run migrations
-npx prisma migrate dev
-
-# Seed database (optional)
-npx prisma db seed
 ```
 
 ### 4. Run Development Server
@@ -154,15 +123,7 @@ Visit `http://localhost:3000` to see your application.
 
 Visit `http://localhost:3000/studio` to access the Sanity CMS admin panel.
 
-## 📊 Database Schema
-
-### Key Models
-
-- **User**: User accounts with email/phone authentication
-- **Appointment**: Booking records with Square integration
-- **Newsletter**: Email subscriptions
-- **DefaultSlot**: Default available time slots
-- **DateOverride**: Specific date availability overrides
+## 📊 Content Management
 
 ### CMS Content (Sanity)
 
@@ -172,6 +133,14 @@ Visit `http://localhost:3000/studio` to access the Sanity CMS admin panel.
 - **Package**: Service packages
 - **Testimonial**: Customer reviews
 - **RecentWork**: Portfolio items
+
+### Package Integration with Square
+
+Packages are now fetched directly from Square API instead of Sanity CMS. To set up packages:
+
+1. In your Square Dashboard, create items that represent packages
+2. Set appropriate prices for each package
+3. The application will automatically fetch and display these packages
 
 ## 🎨 Customization
 
@@ -190,13 +159,6 @@ Visit `http://localhost:3000/studio` to access the Sanity CMS admin panel.
 
 - **Poppins**: Main body font
 - **Arizonia**: Decorative script font
-
-## 🔐 Authentication Flow
-
-1. User signs up with email + password (+ optional phone)
-2. Better Auth creates secure session
-3. User can login with email or phone + password
-4. Protected routes redirect to login if not authenticated
 
 ## 💳 Payment Flow
 
@@ -250,26 +212,26 @@ The app can be deployed to any platform that supports Next.js:
 
 1. **CMS**: Moved from custom database tables to Sanity
 2. **Payments**: Square instead of Stripe
-3. **Auth**: Better Auth with email + phone support
+3. **No Authentication**: Simplified flow without user accounts
 4. **No Admin Dashboard**: Use Sanity Studio instead
-5. **Simplified Schema**: CMS content in Sanity, only user/booking data in Prisma
+5. **Simplified Schema**: CMS content in Sanity
 
 ### Important Files
 
-- `src/lib/auth.ts`: Better Auth configuration
 - `src/lib/square.ts`: Square SDK setup
 - `src/sanity/schemaTypes/index.ts`: All Sanity schemas
-- `prisma/schema.prisma`: Database schema
+- `src/components/sections/PackageSection.tsx`: Package display component
+- `src/app/api/square/packages/route.ts`: Square packages API endpoint
 
 ## 🐛 Troubleshooting
 
-### Database Issues
+### Square Issues
 ```bash
-# Reset database
-npx prisma migrate reset
+# Check Square config
+npx square check
 
-# Generate new client
-npx prisma generate
+# Deploy Square schema
+npx square deploy
 ```
 
 ### Sanity Issues
@@ -295,7 +257,6 @@ npm install
 
 - [Next.js Docs](https://nextjs.org/docs)
 - [Sanity Docs](https://www.sanity.io/docs)
-- [Better Auth Docs](https://www.better-auth.com/docs)
 - [Square Developer Docs](https://developer.squareup.com/docs)
 - [Prisma Docs](https://www.prisma.io/docs)
 

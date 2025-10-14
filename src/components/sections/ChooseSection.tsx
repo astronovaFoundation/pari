@@ -1,29 +1,7 @@
 import Image from "next/image"
-import { Award, Users, Sparkles, Heart } from "lucide-react"
 
 export default function ChooseSection() {
-  const features = [
-    {
-      icon: Award,
-      title: "Expert Stylists",
-      description: "Trained by seasoned beauty professionals"
-    },
-    {
-      icon: Sparkles,
-      title: "Premium Products",
-      description: "Quality products from U.S. and Europe"
-    },
-    {
-      icon: Users,
-      title: "Personalized Care",
-      description: "Tailored services for every client"
-    },
-    {
-      icon: Heart,
-      title: "Long-lasting Results",
-      description: "Flawless outcomes that endure"
-    }
-  ]
+
 
   return (
     <section id="ChooseUs" className="relative w-full min-h-[70vh]">
@@ -46,15 +24,11 @@ export default function ChooseSection() {
             <h2 className="mb-6 text-3xl font-semibold text-foreground underline underline-offset-10 decoration-white md:text-4xl">
               How We are Special
             </h2>
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              {features.map((feature, index) => (
-                <div key={index} className="text-center">
-                  <feature.icon className="w-8 h-8 mx-auto mb-2 text-foreground" />
-                  <h3 className="text-sm font-semibold text-foreground mb-1">{feature.title}</h3>
-                  <p className="text-xs text-black">{feature.description}</p>
-                </div>
-              ))}
-            </div>
+               <p className="text-balance leading-relaxed text-black">
+              At Pari Eyebrow, Lashes & Threading Palace, our stylists are expertly trained in precision threading and
+              eyelash enhancement by seasoned beauty professionals. Using premium products from the U.S. and Europe, we
+              ensure every client leaves with flawless, long-lasting results
+            </p>
           </div>
         </div>
 

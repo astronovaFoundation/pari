@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Check } from "lucide-react"
-import { Button } from "../ui/button"
+import { Loader } from "../ui/Loader"
 
 type PricingItem = {
   id: string
@@ -22,12 +22,12 @@ export default function PricingSection() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
-  // Fetch pricing data from Square Catalog API
+  // Fetch pricing data from Square Catalog API (services only)
   useEffect(() => {
     (async () => {
       try {
         setLoading(true)
-        const response = await fetch("/api/square/catalog?types=ITEM,CATEGORY")
+        const response = await fetch("/api/square/catalog?types=ITEM,CATEGORY&servicesOnly=true")
         
         if (!response.ok) {
           throw new Error("Failed to fetch catalog")
@@ -94,9 +94,7 @@ export default function PricingSection() {
             <p className="text-lg sm:text-xl md:text-2xl mb-2 text-secondary font-arizonia">Spa Center</p>
             <h1 className="text-xl sm:text-2xl md:text-4xl font-light text-foreground">Our Pricing</h1>
           </div>
-          <div className="flex justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
-          </div>
+          <Loader label="Loading pricing..." />
         </div>
       </section>
     )
@@ -124,7 +122,7 @@ export default function PricingSection() {
             {/* Left Column */}
             <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8 mb-6 md:mb-0">
               {leftCategories.map((category) => (
-                <div key={category._id} className="space-y-3 sm:space-y-4 md:space-y-6">
+                <div key={category.id} className="space-y-3 sm:space-y-4 md:space-y-6">
                   <div className="flex justify-between items-center px-2 sm:px-0">
                     <h2 className="text-sm sm:text-base md:text-lg font-medium text-foreground">
                       {category.name}
@@ -143,7 +141,7 @@ export default function PricingSection() {
                             {item.name}
                           </span>
                         </div>
-                        <span className="text-xs md:text-sm font-medium flex-shrink-0 text-secondary">
+                        <span className="text-xs sm:text-sm font-medium flex-shrink-0 text-secondary">
                           ${item.price.toFixed(2)}
                         </span>
                       </div>
@@ -156,7 +154,7 @@ export default function PricingSection() {
             {/* Right Column */}
             <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8">
               {rightCategories.map((category) => (
-                <div key={category._id} className="space-y-3 sm:space-y-4 md:space-y-6">
+                <div key={category.id} className="space-y-3 sm:space-y-4 md:space-y-6">
                   <div className="flex justify-between items-center px-2 sm:px-0">
                     <h2 className="text-sm sm:text-base md:text-lg font-medium text-foreground">
                       {category.name}
@@ -187,14 +185,8 @@ export default function PricingSection() {
           </div>
         )}
 
-        {/* Book Call Button */}
-        <div className="text-center">
-          <Button className="bg-primary cursor-pointer text-white hover:opacity-90 rounded-full px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 text-sm sm:text-base md:text-lg font-medium">
-            BOOK CALL
-          </Button>
-        </div>
+   
       </div>
     </section>
   )
 }
-

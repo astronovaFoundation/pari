@@ -8,11 +8,9 @@ import { Button } from '../ui/button'
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
-  const SQUARE_BOOKING_URL = "https://app.squareupsandbox.com/appointments/book/iyrnbqtf0ygfyw/LJED5H1M5A5VD/start"
 
   const handleBookAppointment = () => {
-    window.open(SQUARE_BOOKING_URL, '_blank')
+    window.open(process.env.NEXT_PUBLIC_SQUARE_BOOKING_URL, '_blank')
   }
 
   return (
@@ -34,9 +32,10 @@ const Header = () => {
           <p>Open hours: 9:30 AM - 6:30 PM Mon-Sat 11:00 AM - 5:30 PM Sun</p>
           <div className='border-[1px] border-white rotate-90 w-5'/>
           <div className='flex gap-3'>
-            <Facebook className='inline mr-2 cursor-pointer' size={16} color='white' fill='white' />
-            <Twitter className='inline mr-2 cursor-pointer' size={16} color='white' fill='white' />
-            <Instagram className='inline mr-2 cursor-pointer' size={16} color='white' />
+            <Link href='https://www.facebook.com/profile.php?id=61581967272494'><Facebook className='inline mr-2 cursor-pointer' size={16} color='white'  /></Link>
+            <Link href='https://twitter.com/ParieyeBrowThreading'><Twitter className='inline mr-2 cursor-pointer' size={16} color='white' /></Link>
+            <Link href='https://www.instagram.com/pari_eyebrow_threading_palace?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==/'><Instagram className='inline mr-2 cursor-pointer' size={16} color='white'  /></Link>
+
           </div>
         </div>
       </div>
@@ -100,9 +99,15 @@ const Header = () => {
 
             {/* Social icons */}
             <div className="flex items-center gap-4 pt-3 border-t border-white/10">
-              <Facebook size={18} className="cursor-pointer hover:opacity-80 transition-opacity" fill="white" />
-              <Twitter size={18} className="cursor-pointer hover:opacity-80 transition-opacity" fill="white" />
-              <Instagram size={18} className="cursor-pointer hover:opacity-80 transition-opacity" />
+              <Link href='https://www.facebook.com/profile.php?id=61581967272494'>
+                <Facebook size={18} className="cursor-pointer hover:opacity-80 transition-opacity"  />
+              </Link>
+              <Link href='https://twitter.com/ParieyeBrowThreading'>
+                <Twitter size={18} className="cursor-pointer hover:opacity-80 transition-opacity"  />
+              </Link>
+              <Link href='https://www.instagram.com/pari_eyebrow_threading_palace?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==/'>
+                <Instagram size={18} className="cursor-pointer hover:opacity-80 transition-opacity" />
+              </Link>
             </div>
           </div>
 

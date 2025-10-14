@@ -38,98 +38,6 @@ const banner: SchemaTypeDefinition = {
   ],
 }
 
-// Pricing Category schema (formerly Menu Category)
-const pricingCategory: SchemaTypeDefinition = {
-  name: 'pricingCategory',
-  title: 'Pricing Categories',
-  type: 'document',
-  fields: [
-    {
-      name: 'name',
-      title: 'Category Name',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    },
-  ],
-}
-
-// Pricing Item schema (formerly Menu)
-const pricingItem: SchemaTypeDefinition = {
-  name: 'pricingItem',
-  title: 'Pricing Items',
-  type: 'document',
-  fields: [
-    {
-      name: 'name',
-      title: 'Service Name',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: 'price',
-      title: 'Price',
-      type: 'number',
-      validation: (Rule) => Rule.required().min(0),
-    },
-    {
-      name: 'category',
-      title: 'Category',
-      type: 'reference',
-      to: [{ type: 'pricingCategory' }],
-      validation: (Rule) => Rule.required(),
-    },
-  ],
-}
-
-// Package schema
-const packageSchema: SchemaTypeDefinition = {
-  name: 'package',
-  title: 'Packages',
-  type: 'document',
-  fields: [
-    {
-      name: 'name',
-      title: 'Package Name',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: 'totalPrice',
-      title: 'Total Price',
-      type: 'number',
-      validation: (Rule) => Rule.required().min(0),
-    },
-    {
-      name: 'image',
-      title: 'Package Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: 'isFeatured',
-      title: 'Featured Package',
-      type: 'boolean',
-      description: 'Display this package prominently on the homepage',
-      initialValue: false,
-    },
-    {
-      name: 'services',
-      title: 'Included Services',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'pricingItem' }],
-        },
-      ],
-      validation: (Rule) => Rule.required().min(1),
-    },
-  ],
-}
-
 // Testimonial schema
 const testimonial: SchemaTypeDefinition = {
   name: 'testimonial',
@@ -232,5 +140,5 @@ const newsletter: SchemaTypeDefinition = {
 }
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [banner, pricingCategory, pricingItem, packageSchema, testimonial, recentWork, newsletter],
+  types: [banner, testimonial, recentWork, newsletter],
 }

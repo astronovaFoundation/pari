@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
+
+
 export default function MessageSection() {
+
+
   return (
     <section id="Message" className="flex flex-col md:flex-row gap-0 px-0 md:px-8 lg:px-36 py-8 md:py-16 z-10">
       {/* Left side - Purple gradient background with image */}
@@ -51,15 +55,15 @@ export default function MessageSection() {
             </p>
           </div>
 
-          {/* CTA Button */}
-          <div className="pt-2 sm:pt-4">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 sm:pt-4">
             <Button className="btn-gradient rounded-full py-2 sm:py-2.5 md:py-3 px-5 sm:px-6 md:px-8 text-xs sm:text-sm md:text-base font-medium hover:opacity-90 transition-opacity w-auto">
               MAKE AN APPOINTMENT
             </Button>
+       
           </div>
         </div>
       </div>
     </section>
   )
 }
-

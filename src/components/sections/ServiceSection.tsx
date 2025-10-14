@@ -1,26 +1,26 @@
 import React from "react"
 import Image from "next/image"
-import { Car } from "lucide-react"
+import { Car, Leaf, Smile } from "lucide-react"
 
 export default function ServicesSection() {
   const specialServices = [
     {
       id: 1,
       name: "Unlimited Free Parking",
-      description: "Lorem ipsum dolor sit amet, ne clita evertitur mei democritum.",
-      icon: <Car />,
+      description: "Convenient and secure parking available for all our valued customers at no extra cost.",
+      icon: <Car className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />,
     },
     {
       id: 2,
       name: "Peaceful Environment",
-      description: "Lorem ipsum dolor sit amet, ne clita evertitur mei democritum.",
-      icon: <Car />,
+      description: "Tranquil and serene atmosphere designed to provide you with the ultimate relaxation experience.",
+      icon: <Leaf className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />,
     },
     {
       id: 3,
       name: "Friendly Environment",
-      description: "Lorem ipsum dolor sit amet, ne clita evertitur mei democritum.",
-      icon: <Car />,
+      description: "Warm and welcoming staff dedicated to making your visit comfortable and enjoyable.",
+      icon: <Smile className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />,
     },
   ]
 
@@ -96,7 +96,7 @@ export default function ServicesSection() {
           How <span className="text-primary">We</span> Are Special?
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-16 w-full mx-auto">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 sm:gap-8 md:gap-16 w-full mx-auto">
           {specialServices.map((service) => (
             <div key={service.id} className="flex flex-col">
               <div className="relative flex flex-row items-start w-full mb-2">
@@ -109,7 +109,9 @@ export default function ServicesSection() {
                     height={64}
                     className="w-full h-full -left-2 -top-2 object-contain opacity-80"
                   />
-                  <Car className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 absolute left-2 top-2 opacity-70" fill="#ffffff" />
+                  <div className="absolute left-2 top-2 opacity-70">
+                    {service.icon}
+                  </div>
                 </div>
 
                 <div>
@@ -127,4 +129,3 @@ export default function ServicesSection() {
     </section>
   )
 }
-
