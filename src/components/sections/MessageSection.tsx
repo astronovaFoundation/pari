@@ -55,13 +55,7 @@ export default function MessageSection() {
             </p>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 sm:pt-4">
-            <Button className="btn-gradient rounded-full py-2 sm:py-2.5 md:py-3 px-5 sm:px-6 md:px-8 text-xs sm:text-sm md:text-base font-medium hover:opacity-90 transition-opacity w-auto">
-              MAKE AN APPOINTMENT
-            </Button>
-       
-          </div>
+     
         </div>
       </div>
     </section>

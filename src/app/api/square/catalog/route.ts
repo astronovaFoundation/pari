@@ -10,11 +10,23 @@ type SquareError = {
 }
 
 // Get catalog items from Square
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(req.url)
     const types = searchParams.get("types") // e.g., "ITEM,CATEGORY"
  const servicesOnly = searchParams.get("servicesOnly") === "true" // New parameter to fetch only services
+
+    // Add caching headers
+    const cacheKey = `${types || "default"}-${servicesOnly ? "services" : "all"}`
+    const cachedData = getCachedData(cacheKey)
+    
+    if (cachedData) {
+      return NextResponse.json(cachedData, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600'
+        }
+      })
+    }
 
     // List all catalog objects or filter by types
     const response = await catalogApi.listCatalog(
@@ -84,9 +96,18 @@ export async function GET(req: NextRequest) {
       })
       .flat()
 
-    return NextResponse.json({
+    const result = {
       categories,
       items,
+    }
+
+    // Cache the result
+    setCachedData(cacheKey, result)
+
+    return NextResponse.json(result, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600'
+      }
     })
   } catch (error: unknown) {
     const squareError = error as SquareError
@@ -129,4 +150,25 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     )
   }
+}
+
+type CachedCatalogData = {
+  categories: Array<{ id: string; name: string }>;
+  items: Array<{ id: string; name: string; price: number; categoryId: string | null }>;
+};
+
+// Simple in-memory cache (in production, you might want to use Redis)
+const cache = new Map<string, { data: CachedCatalogData; timestamp: number }>()
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
+function getCachedData(key: string): CachedCatalogData | null {
+  const cached = cache.get(key)
+  if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+    return cached.data
+  }
+  return null
+}
+
+function setCachedData(key: string, data: CachedCatalogData) {
+  cache.set(key, { data, timestamp: Date.now() })
 }

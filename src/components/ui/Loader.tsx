@@ -20,9 +20,9 @@ export const Loader: React.FC<LoaderProps> = ({
   fullScreen = false
 }) => {
   const styleVars = {
-    ["--uib-size" as any]: `${size}px`,
-    ["--uib-color" as any]: color,
-    ["--uib-speed" as any]: speed,
+    ["--uib-size" as string]: `${size}px`,
+    ["--uib-color" as string]: color,
+    ["--uib-speed" as string]: speed,
   } as React.CSSProperties
 
   return (

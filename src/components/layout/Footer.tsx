@@ -14,14 +14,14 @@ export default function Footer() {
 
   async function subscribe() {
     setMsg("")
-    const v = email.trim()
-    if (!/.+@.+\..+/.test(v)) { setMsg("Enter a valid email"); return }
+    const emailValue = email.trim()
+    if (!/.+@.+\..+/.test(emailValue)) { setMsg("Enter a valid email"); return }
     setBusy(true)
     try {
       const r = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: v.toLowerCase() }),
+        body: JSON.stringify({ email: emailValue.toLowerCase() }),
       })
       const j = await r.json().catch(() => ({}))
       if (!r.ok) setMsg(j?.error || "Failed to subscribe")
@@ -103,7 +103,7 @@ export default function Footer() {
           </div>
 
           {/* Images */}
-          <Image src="/footer.png" alt="Gallery Image 1" width={400} height={400} />
+          <Image src="/footer.webp" alt="Gallery Image 1" width={400} height={400} />
         </div>
 
         {/* Bottom Footer */}

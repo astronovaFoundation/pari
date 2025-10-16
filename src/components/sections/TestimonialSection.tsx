@@ -13,6 +13,7 @@ type Testimonial = {
 
 export default async function TestimonialsSection() {
   try {
+    // Already correctly implemented to show only the latest 3 items
     const testimonials = await client.fetch<Testimonial[]>(`
       *[_type == "testimonial"] | order(_createdAt desc) [0...3] {
         _id,
@@ -29,53 +30,53 @@ export default async function TestimonialsSection() {
     }
 
     return (
-      <section className="py-12 px-4 md:px-6 lg:px-36" id='Testimonials'>
-        <div className="mx-auto">
+      <section className="py-16 px-4 md:px-6 lg:px-36" id='Testimonials'>
+        <div className="mx-auto ">
           {/* Header */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-12">
             <p className="text-secondary text-base md:text-lg font-arizonia mb-2">Spa Center</p>
-            <h2 className="text-xl sm:text-2xl md:text-4xl font-light text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-foreground">
               Client&apos;s Testimonials
             </h2>
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial._id}
-                className="relative bg-white"
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
               >
                 {/* Testimonial Quote Section */}
-                <div className="relative p-4">
+                <div className="relative p-6 pb-4">
                   {/* Opening quotation mark */}
                   <div className="absolute top-6 left-6 opacity-60">
-                    <Image src="/comma.png" alt="" width={27.5} height={24} />
+                    <Image src="/comma.webp" alt="" width={30} height={30} />
                   </div>
 
                   {/* Testimonial Content */}
-                  <div className="relative z-10 pt-8 pb-4 px-4">
-                    <blockquote className="text-secondary text-xs font-light leading-relaxed text-pretty min-h-[120px]">
-                      {testimonial.testimonial}
+                  <div className="relative z-10 p-8 ">
+                    <blockquote className="text-secondary text-sm leading-relaxed italic text-pretty">
+                      &quot;{testimonial.testimonial}&quot;
                     </blockquote>
                   </div>
 
                   {/* Closing quotation mark */}
-                  <div className="relative bottom-10 right-6 opacity-60 transform rotate-180">
-                    <Image src="/comma.png" alt="" width={27.5} height={24} />
+                  <div className="absolute bottom-4 right-6 opacity-60 transform rotate-180">
+                    <Image src="/comma.webp" alt="" width={30} height={30} />
                   </div>
                 </div>
 
                 {/* Author Info */}
-                <div className="px-8">
+                <div className="px-6 pb-6 pt-2">
                   <div className="flex items-center gap-4">
-                    <Avatar className="h-14 w-14 flex-shrink-0">
+                    <Avatar className="h-12 w-12 flex-shrink-0 ring-2 ring-primary/20">
                       <AvatarImage 
                         src={urlFor(testimonial.image).url()} 
                         alt={testimonial.name} 
                         className="object-cover"
                       />
-                      <AvatarFallback className="bg-secondary text-white font-light text-base">
+                      <AvatarFallback className="bg-primary/10 text-primary font-medium text-base">
                         {testimonial.name
                           .split(" ")
                           .map((n) => n[0])
@@ -84,10 +85,10 @@ export default async function TestimonialsSection() {
                     </Avatar>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-foreground text-base truncate">
+                      <h4 className="font-semibold text-foreground text-base truncate">
                         {testimonial.name}
                       </h4>
-                      <p className="text-secondary font-light text-sm text-wrap line-clamp-2">
+                      <p className="text-secondary font-light text-sm text-wrap line-clamp-2 mt-1">
                         {testimonial.subDescription}
                       </p>
                     </div>
@@ -104,4 +105,3 @@ export default async function TestimonialsSection() {
     return null
   }
 }
-

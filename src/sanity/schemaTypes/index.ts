@@ -124,12 +124,6 @@ const newsletter: SchemaTypeDefinition = {
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
     },
-    {
-      name: 'isActive',
-      title: 'Active',
-      type: 'boolean',
-      initialValue: true,
-    },
   ],
   preview: {
     select: {

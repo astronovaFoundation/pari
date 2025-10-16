@@ -27,7 +27,16 @@ export default function PricingSection() {
     (async () => {
       try {
         setLoading(true)
-        const response = await fetch("/api/square/catalog?types=ITEM,CATEGORY&servicesOnly=true")
+        
+        // Create AbortController for timeout
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+        
+        const response = await fetch("/api/square/catalog?types=ITEM,CATEGORY&servicesOnly=true", {
+          signal: controller.signal
+        })
+        
+        clearTimeout(timeoutId)
         
         if (!response.ok) {
           throw new Error("Failed to fetch catalog")
@@ -40,7 +49,7 @@ export default function PricingSection() {
         const categoryMap = new Map<string, PricingCategory>()
         
         // First, create all categories
-        catalogCategories.forEach((cat: any) => {
+        catalogCategories.forEach((cat: { id: string; name: string }) => {
           categoryMap.set(cat.id, {
             id: cat.id,
             name: cat.name,
@@ -70,8 +79,12 @@ export default function PricingSection() {
           .filter(cat => cat.items.length > 0)
 
         setCategories(nonEmptyCategories)
-      } catch (e: any) {
-        setError("Failed to load pricing")
+      } catch (e: unknown) {
+        if (e instanceof Error && e.name === 'AbortError') {
+          setError("Request timeout - please try again")
+        } else {
+          setError("Failed to load pricing")
+        }
         console.error(e)
       } finally {
         setLoading(false)
@@ -94,7 +107,7 @@ export default function PricingSection() {
             <p className="text-lg sm:text-xl md:text-2xl mb-2 text-secondary font-arizonia">Spa Center</p>
             <h1 className="text-xl sm:text-2xl md:text-4xl font-light text-foreground">Our Pricing</h1>
           </div>
-          <Loader label="Loading pricing..." />
+          <Loader label="Loading..." />
         </div>
       </section>
     )
@@ -114,7 +127,9 @@ export default function PricingSection() {
         </div>
 
         {error ? (
-          null
+          <div className="text-red-500 py-8">
+            <p>{error}</p>
+          </div>
         ) : !hasContent ? (
           null
         ) : (

@@ -5,13 +5,14 @@ import { urlFor } from "@/sanity/lib/image"
 type RecentWork = {
   _id: string
   title: string
-  image: any
+  image: string
 }
 
 export default async function WorkSection() {
   try {
+    // Already correctly implemented to show only the latest 3 items
     const recentWorks = await client.fetch<RecentWork[]>(`
-      *[_type == "recentWork"] | order(order asc) [0...3] {
+      *[_type == "recentWork"] | order(_createdAt desc) [0...3] {
         _id,
         title,
         image
@@ -72,4 +73,3 @@ export default async function WorkSection() {
     return null
   }
 }
-

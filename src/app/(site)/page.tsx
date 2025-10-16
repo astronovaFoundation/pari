@@ -16,8 +16,8 @@ export default function Home() {
       <BannerSection />
       <ServiceSection />
       <ChooseSection />
-      <PackageSection />
       <PricingSection />
+      <PackageSection />
       <MessageSection />
       <GallerySection />
       <TestimonialSection />

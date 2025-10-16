@@ -35,14 +35,14 @@ export default function ServicesSection() {
     {
       id: 2,
       title: "WAXING",
-      image: "/facial.png",
+      image: "/facial.webp",
       description:
         "Book your massage online and view orthopedic massage therapy pricing at our booking page or at our price lists.",
     },
     {
       id: 3,
       title: "FACIAL",
-      image: "/facial.png",
+      image: "/facial.webp",
       description:
         "Each one of our staff members are licensed massage therapists who have gone above and beyond in training.",
     },
@@ -103,7 +103,7 @@ export default function ServicesSection() {
                 {/* Decorative purple brush stroke background */}
                 <div className="w-12 h-10 sm:w-16 sm:h-12 md:w-24 md:h-16 flex-shrink-0 mb-2">
                   <Image
-                    src="/decorative.png"
+                    src="/decorative.webp"
                     alt="decorative brush"
                     width={96}
                     height={64}

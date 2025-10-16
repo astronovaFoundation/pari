@@ -28,9 +28,16 @@ export default function PackagesSection() {
   useEffect(() => {
     (async () => {
       try {
-      
+        // Create AbortController for timeout
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+        
         // Fetch packages from Square API
-        const response = await fetch("/api/square/packages")
+        const response = await fetch("/api/square/packages", {
+          signal: controller.signal
+        })
+        
+        clearTimeout(timeoutId)
         
         if (!response.ok) {
           throw new Error(`Failed to fetch packages: ${response.status}`)
@@ -41,8 +48,12 @@ export default function PackagesSection() {
 
         setPackages(packageItems || [])
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : "Failed to load packages"
-        setError(errorMessage)
+        if (err instanceof Error && err.name === 'AbortError') {
+          setError("Request timeout - please try again")
+        } else {
+          const errorMessage = err instanceof Error ? err.message : "Failed to load packages"
+          setError(errorMessage)
+        }
         console.error("Package fetch error:", err)
       } 
     })()
@@ -61,7 +72,7 @@ export default function PackagesSection() {
   }
 
   if (packages.length === 0) {
-    return 
+    return null
   }
 
   return (

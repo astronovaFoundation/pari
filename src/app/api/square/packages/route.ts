@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { catalogApi } from "@/lib/square"
 import { CatalogObject } from "square"
 
@@ -25,8 +25,19 @@ type SquareError = {
 }
 
 // Get packages from Square with their associated services
-export async function GET(req: NextRequest) {
+export async function GET(): Promise<NextResponse> {
   try {
+    // Check cache first
+    const cachedData = getCachedData('packages')
+    
+    if (cachedData) {
+      return NextResponse.json(cachedData, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600'
+        }
+      })
+    }
+
     // Fetch all catalog objects
     const response = await catalogApi.listCatalog(
       undefined,
@@ -55,8 +66,17 @@ export async function GET(req: NextRequest) {
       return convertItemToPackage(item, services, catalogObjects)
     })
 
-    return NextResponse.json({
+    const result = {
       packages: packageItems,
+    }
+
+    // Cache the result
+    setCachedData('packages', result)
+
+    return NextResponse.json(result, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600'
+      }
     })
   } catch (error: unknown) {
     const squareError = error as SquareError
@@ -176,4 +196,24 @@ function extractServicesForPackage(
   }
   
   return packageServices
+}
+
+type CachedPackagesData = {
+  packages: PackageItem[];
+};
+
+// Simple in-memory cache (in production, you might want to use Redis)
+const cache = new Map<string, { data: CachedPackagesData; timestamp: number }>()
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
+function getCachedData(key: string): CachedPackagesData | null {
+  const cached = cache.get(key)
+  if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+    return cached.data
+  }
+  return null
+}
+
+function setCachedData(key: string, data: CachedPackagesData) {
+  cache.set(key, { data, timestamp: Date.now() })
 }

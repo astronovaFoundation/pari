@@ -1,6 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
-import { client } from "@/sanity/lib/client"
+import { createClient } from "next-sanity"
+import { projectId, dataset } from "@/sanity/env"
 
+/**
+ * Newsletter subscription API route
+ * 
+ * This route securely stores newsletter subscriptions in Sanity CMS.
+ * It uses a server-side write token to ensure security and prevent exposing
+ * admin credentials to the frontend.
+ * 
+ * Required environment variable:
+ * SANITY_API_TOKEN - A write token with permissions to create newsletter documents
+ */
 export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json()
@@ -11,8 +22,23 @@ export async function POST(req: NextRequest) {
 
     const normalizedEmail = email.toLowerCase().trim()
 
+    // Check if write token is available
+    if (!process.env.SANITY_API_TOKEN) {
+      console.error('SANITY_API_TOKEN environment variable is not set');
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    }
+
+    // Create a client with write token for server-side operations
+    const writeClient = createClient({
+      projectId,
+      dataset,
+      token: process.env.SANITY_API_TOKEN, // Server-side write token
+      apiVersion: '2025-10-13',
+      useCdn: false,
+    });
+
     // Check if email already exists in Sanity
-    const existing = await client.fetch(
+    const existing = await writeClient.fetch(
       `*[_type == "newsletter" && email == $email][0]`,
       { email: normalizedEmail }
     )
@@ -22,11 +48,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Create newsletter subscription in Sanity
-    await client.create({
+    await writeClient.create({
       _type: 'newsletter',
       email: normalizedEmail,
       subscribedAt: new Date().toISOString(),
-      isActive: true,
     })
 
     return NextResponse.json({ success: true, message: "Successfully subscribed to newsletter!" })

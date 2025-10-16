@@ -62,9 +62,9 @@ export const Button: React.FC<ButtonProps> = ({
     if (!onClick) return;
     try {
       const r = onClick(e);
-      if (autoLoading && r && typeof (r as any).then === "function") {
+      if (autoLoading && r && typeof r === "object" && r !== null && 'then' in r && typeof (r as Promise<unknown>).then === "function") {
         setPending(true);
-        try { await (r as any); } finally { setPending(false); }
+        try { await (r as Promise<unknown>); } finally { setPending(false); }
       }
     } catch (_) {
       // keep disabled state consistent

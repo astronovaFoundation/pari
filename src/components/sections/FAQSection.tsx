@@ -103,7 +103,7 @@ const faqItems = [
           <div className="flex justify-center lg:sticky lg:top-8 order-2 lg:order-1">
             <div className="relative w-full max-w-md lg:max-w-none">
               <Image
-                src="/faq.png"
+                src="/faq.webp"
                 alt="FAQ Illustration"
                 className="w-full h-auto"
                 width={700}

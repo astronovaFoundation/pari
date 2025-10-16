@@ -53,7 +53,7 @@ export default function BannerSection() {
 
   return (
     <div className="relative w-full">
-      <div className="relative w-full aspect-[21/9] overflow-hidden">
+      <div className="relative w-full aspect-[21/7] overflow-hidden">
         <Swiper
           modules={[Navigation, Autoplay, Pagination]}
           spaceBetween={0}
@@ -80,7 +80,7 @@ export default function BannerSection() {
                   src={urlFor(banner.image).url()}
                   alt={banner.title}
                   fill
-                  className="object-cover"
+                  className="object-center"
                 />
               </div>
             </SwiperSlide>

@@ -94,7 +94,7 @@ SQUARE_LOCATION_ID="your-square-location-id"
 # Sanity
 NEXT_PUBLIC_SANITY_PROJECT_ID="your-sanity-project-id"
 NEXT_PUBLIC_SANITY_DATASET="production"
-SANITY_API_TOKEN="your-sanity-api-token"
+SANITY_API_TOKEN="your-sanity-api-token"  # Write token with permissions to create newsletter documents
 
 # App
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
@@ -133,6 +133,7 @@ Visit `http://localhost:3000/studio` to access the Sanity CMS admin panel.
 - **Package**: Service packages
 - **Testimonial**: Customer reviews
 - **RecentWork**: Portfolio items
+- **Newsletter**: Customer newsletter subscriptions (email and timestamp only)
 
 ### Package Integration with Square
 
