@@ -63,7 +63,7 @@ export default function LocationSection() {
             {/* Main Storefront Image */}
             <div>
               <Image
-                src="/saloon.png"
+                src="/saloon.webp"
                 alt="Eyebrow Threading Palace storefront"
                 width={800}
                 height={500}
@@ -74,14 +74,14 @@ export default function LocationSection() {
             {/* Interior Images Grid */}
             <div className="grid grid-cols-2 gap-3 md:gap-4">
               <Image
-                src="/saloon-room.png"
+                src="/saloon-room.webp"
                 alt="Salon interior with threading chairs"
                 className="w-full h-32 md:h-48 object-cover rounded-lg shadow-sm"
                 width={400}
                 height={300}
               />
               <Image
-                src="/saloon-bed.png"
+                src="/saloon-bed.webp"
                 alt="Professional threading treatment bed"
                 className="w-full h-32 md:h-48 object-cover rounded-lg shadow-sm"
                 width={400}

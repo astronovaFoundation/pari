@@ -162,7 +162,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
             onClick={onSelect}
             className="w-full !rounded-full py-2.5 md:py-3 px-4 md:px-6 text-sm md:text-base font-medium bg-white text-primary hover:opacity-90"
           >
-            SELECT PACKAGE
+            SELECT
           </Button>
         </div>
       </div>

@@ -35,5 +35,4 @@ Disallow: /dashboard/
 Disallow: /checkout/
 
 # Sitemap location
-Sitemap: https://yourdomain.com/sitemap.xml
-
+Sitemap: https://www.parieyebrowthreading.com/sitemap.xml

@@ -106,33 +106,6 @@ const recentWork: SchemaTypeDefinition = {
   ],
 }
 
-// Newsletter schema
-const newsletter: SchemaTypeDefinition = {
-  name: 'newsletter',
-  title: 'Newsletter Subscriptions',
-  type: 'document',
-  fields: [
-    {
-      name: 'email',
-      title: 'Email Address',
-      type: 'string',
-      validation: (Rule) => Rule.required().email(),
-    },
-    {
-      name: 'subscribedAt',
-      title: 'Subscribed At',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-    },
-  ],
-  preview: {
-    select: {
-      title: 'email',
-      subtitle: 'subscribedAt',
-    },
-  },
-}
-
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [banner, testimonial, recentWork, newsletter],
+  types: [banner, testimonial, recentWork],
 }

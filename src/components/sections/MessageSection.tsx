@@ -12,7 +12,7 @@ export default function MessageSection() {
       <div className="bg-primary w-full md:w-[350px] lg:w-[426px] h-[440px] md:h-[560px] lg:h-[640px] relative flex items-center md:items-end justify-center">
         <div className="w-full h-full relative">
           <Image
-            src="/message.png"
+            src="/message.webp"
             alt="Message from artist"
             fill
             className="object-contain object-center md:object-left-bottom md:-translate-x-[6%] lg:-translate-x-[30%] md:scale-110 lg:scale-125 origin-bottom z-10"

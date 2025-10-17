@@ -8,7 +8,7 @@ export default function ChooseSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/WhyUs.png"
+          src="/WhyUs.webp"
           alt="Beauty treatment background"
           fill
           className="object-cover"

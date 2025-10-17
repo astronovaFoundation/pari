@@ -20,10 +20,65 @@ const arizonia = Arizonia({
 
 export const metadata: Metadata = {
   title: {
-    default: "Pari Eyebrow Threading Palace",
+    default: "Pari Eyebrow Threading Palace - Expert Brow Threading & Beauty Services",
     template: "%s | Pari Eyebrow Threading Palace"
   },
-  description: "Beauty salon and spa services - Expert eyebrow threading, lash extensions, and brow perfection",
+  description: "Experience expert eyebrow threading, lash extensions, and premium beauty services at Pari Eyebrow Threading Palace. Professional brow shaping, waxing, and facial treatments in a luxurious setting.",
+  keywords: [
+    "eyebrow threading",
+    "brow shaping",
+    "beauty salon",
+    "lash extensions",
+    "facial treatments",
+    "waxing services",
+    "professional threading",
+    "eyebrow design",
+    "beauty treatments",
+    "spa services"
+  ],
+  authors: [{ name: "Pari Eyebrow Threading Palace" }],
+  creator: "Pari Eyebrow Threading Palace",
+  publisher: "Pari Eyebrow Threading Palace",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    }
+  },
+  alternates: {
+    canonical: "https://www.parieyebrowthreading.com"
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.parieyebrowthreading.com",
+    title: "Pari Eyebrow Threading Palace - Expert Brow Threading & Beauty Services",
+    description: "Experience expert eyebrow threading, lash extensions, and premium beauty services at Pari Eyebrow Threading Palace.",
+    siteName: "Pari Eyebrow Threading Palace",
+    images: [
+      {
+        url: "/logo.webp",
+        width: 1200,
+        height: 630,
+        alt: "Pari Eyebrow Threading Palace Logo"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pari Eyebrow Threading Palace - Expert Brow Threading & Beauty Services",
+    description: "Experience expert eyebrow threading, lash extensions, and premium beauty services.",
+    images: ["/logo.webp"],
+    creator: "@PariEyebrow"
+  },
+  verification: {
+    google: ""
+  }
 };
 
 export default function RootLayout({
@@ -33,9 +88,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-      <link rel="icon" href="/fav.png" type="image/png" />
-      </head>
       <body
         className={`${poppins.variable} ${arizonia.variable} antialiased font-poppins`}
       >
