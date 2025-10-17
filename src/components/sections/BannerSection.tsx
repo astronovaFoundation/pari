@@ -39,8 +39,9 @@ export default function BannerSection() {
           }
         `)
         setBanners(data || [])
-      } catch (error) {
-       return
+      } catch {
+        // Error handling - simplified catch block without unused variable
+        return
       }
     }
 

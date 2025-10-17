@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Mail, Phone, Facebook, Twitter, Instagram, Menu, X, Clock } from 'lucide-react'
+import { Mail, Phone, Facebook, Twitter, Instagram, Menu, X } from 'lucide-react'
 import { Button } from '../ui/button'
 
 const Header = () => {

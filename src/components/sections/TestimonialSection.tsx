@@ -100,7 +100,8 @@ export default async function TestimonialsSection() {
         </div>
       </section>
     )
-  } catch (error) {
+  } catch {
+    // Error handling - simplified catch block without unused variable
     return null
   }
 }

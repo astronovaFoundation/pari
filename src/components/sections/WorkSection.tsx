@@ -69,7 +69,8 @@ export default async function WorkSection() {
         </div>
       </section>
     )
-  } catch (error) {
+  } catch {
+    // Error handling - simplified catch block without unused variable
     return null
   }
 }

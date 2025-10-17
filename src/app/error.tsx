@@ -1,9 +1,10 @@
 'use client'
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-
+import { useEffect } from "react";
 
 export default function Error({
   error,
@@ -12,7 +13,10 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
-
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error(error);
+  }, [error]);
 
   return (
     <>
@@ -25,14 +29,14 @@ export default function Error({
               Something went wrong!
             </h2>
             <p className="mt-4 text-lg text-secondary">
-              We're sorry, but something went wrong on our end. Please try again later.
+              We&#39;re sorry, but something went wrong on our end. Please try again later.
             </p>
           </div>
           
           <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
             <Button 
               onClick={reset}
-              className="bg-primary px-6 py-3 text-base font-medium text-white !rounded-full"
+              className="btn-gradient px-6 py-3 text-base font-medium text-white !rounded-full"
             >
               Try again
             </Button>
