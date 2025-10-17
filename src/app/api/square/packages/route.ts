@@ -80,7 +80,7 @@ export async function GET(): Promise<NextResponse> {
     })
   } catch (error: unknown) {
     const squareError = error as SquareError
-    console.error("Square packages error:", squareError)
+
     return NextResponse.json(
       { error: squareError?.message || "Failed to fetch packages" },
       { status: 500 }

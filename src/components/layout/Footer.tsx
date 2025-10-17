@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 px-4 lg:px-36">
           {/* Brand Section */}
           <div className="space-y-4">
-            <Image src="/secondary-logo.webp" alt="Logo" width={206} height={89} />
+            <Image src="/secondary-logo.webp" alt="Logo" width={206} height={89} style={{ width: 'auto', height: 'auto' }} />
             <p className="text-secondary text-sm">Open hours: 9:30 AM - 6:30 PM Mon-Sat 11:00 AM - 5:30 PM Sun</p>
             <div className="flex space-x-3">
               <div className="w-10 h-10 btn-gradient rounded-full flex items-center justify-center cursor-pointer">
@@ -45,7 +45,7 @@ export default function Footer() {
             <div className="space-y-2">
               <p className="text-foreground font-medium">(510) 479-1045</p>
               <p className="text-secondary text-xs">info.parieyebrowthreading@gmail.com</p>
-              <div className="pt-2">
+              <div className="pt-2">  
                 <p className="text-foreground font-medium">4025 International Blvd</p>
                 <p className="text-secondary">Oakland, CA 94601</p>
               </div>

@@ -22,7 +22,7 @@ export default async function TestimonialsSection() {
         testimonial,
         subDescription
       }
-    `, {}, { next: { revalidate: 60 } })
+    `)
 
     // Don't render if no testimonials
     if (!testimonials || testimonials.length === 0) {
@@ -51,7 +51,7 @@ export default async function TestimonialsSection() {
                 <div className="relative p-6 pb-4">
                   {/* Opening quotation mark */}
                   <div className="absolute top-6 left-6 opacity-60">
-                    <Image src="/comma.webp" alt="" width={30} height={30} />
+                    <Image src="/comma.webp" alt="" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
                   </div>
 
                   {/* Testimonial Content */}
@@ -63,7 +63,7 @@ export default async function TestimonialsSection() {
 
                   {/* Closing quotation mark */}
                   <div className="absolute bottom-4 right-6 opacity-60 transform rotate-180">
-                    <Image src="/comma.webp" alt="" width={30} height={30} />
+                    <Image src="/comma.webp" alt="" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
                   </div>
                 </div>
 
@@ -101,7 +101,6 @@ export default async function TestimonialsSection() {
       </section>
     )
   } catch (error) {
-    console.error('Error loading testimonials:', error)
     return null
   }
 }

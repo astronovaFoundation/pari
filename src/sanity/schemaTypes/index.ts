@@ -48,7 +48,7 @@ const testimonial: SchemaTypeDefinition = {
       name: 'name',
       title: 'Client Name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().max(25),
     },
     {
       name: 'image',
@@ -63,8 +63,7 @@ const testimonial: SchemaTypeDefinition = {
       name: 'testimonial',
       title: 'Testimonial',
       type: 'text',
-      rows: 4,
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().max(100),
     },
     {
       name: 'subDescription',
@@ -72,13 +71,7 @@ const testimonial: SchemaTypeDefinition = {
       type: 'string',
       description: 'E.g., "Regular Customer", "Bride"',
     },
-    {
-      name: 'rating',
-      title: 'Rating',
-      type: 'number',
-      validation: (Rule) => Rule.min(1).max(5),
-      description: 'Rating out of 5',
-    },
+    // Rating field removed as per requirements
   ],
 }
 
@@ -92,7 +85,7 @@ const recentWork: SchemaTypeDefinition = {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().max(100),
     },
     {
       name: 'image',

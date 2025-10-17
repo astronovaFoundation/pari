@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+
 import type { Metadata } from "next";
 import { Poppins, Arizonia} from "next/font/google";
 
@@ -19,6 +19,9 @@ const arizonia = Arizonia({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+  ),
   title: {
     default: "Pari Eyebrow Threading Palace - Expert Brow Threading & Beauty Services",
     template: "%s | Pari Eyebrow Threading Palace"
@@ -91,12 +94,10 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${arizonia.variable} antialiased font-poppins`}
       >
-        <Suspense fallback={<div className="fixed inset-0 z-[9999] bg-white flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
-        </div>}>
+    
           {children}
           <Toaster richColors position="top-center" />
-        </Suspense>
+    
       </body>
     </html>
   );

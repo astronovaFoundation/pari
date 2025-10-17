@@ -15,6 +15,7 @@ export default function MessageSection() {
             src="/message.webp"
             alt="Message from artist"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-contain object-center md:object-left-bottom md:-translate-x-[6%] lg:-translate-x-[30%] md:scale-110 lg:scale-125 origin-bottom z-10"
           />
         </div>

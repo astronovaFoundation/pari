@@ -33,7 +33,8 @@ export default function PricingSection() {
         const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
         
         const response = await fetch("/api/square/catalog?types=ITEM,CATEGORY&servicesOnly=true", {
-          signal: controller.signal
+          signal: controller.signal,
+          cache: 'no-cache'
         })
         
         clearTimeout(timeoutId)
@@ -85,7 +86,7 @@ export default function PricingSection() {
         } else {
           setError("Failed to load pricing")
         }
-        console.error(e)
+   
       } finally {
         setLoading(false)
       }

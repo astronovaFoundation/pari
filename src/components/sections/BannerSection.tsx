@@ -40,20 +40,24 @@ export default function BannerSection() {
         `)
         setBanners(data || [])
       } catch (error) {
-        console.error('Error loading banners:', error)
+       return
       }
     }
 
     fetchBanners()
   }, [])
 
+  // Don't render if no banners
   if (banners.length === 0) {
     return null
   }
 
+  // Enable loop only if we have more than 1 banner to avoid Swiper warning
+  const enableLoop = banners.length > 1
+
   return (
     <div className="relative w-full">
-      <div className="relative w-full aspect-[21/7] overflow-hidden">
+      <div className="relative w-full aspect-[2/1] lg:aspect-[21/7] overflow-hidden">
         <Swiper
           modules={[Navigation, Autoplay, Pagination]}
           spaceBetween={0}
@@ -62,7 +66,7 @@ export default function BannerSection() {
             delay: 4000,
             disableOnInteraction: false,
           }}
-          loop={true}
+          loop={enableLoop}
           speed={800}
           effect="slide"
           onBeforeInit={(swiper) => {
@@ -80,6 +84,7 @@ export default function BannerSection() {
                   src={urlFor(banner.image).url()}
                   alt={banner.title}
                   fill
+                  sizes="100vw"
                   className="object-center"
                 />
               </div>

@@ -34,7 +34,8 @@ export default function PackagesSection() {
         
         // Fetch packages from Square API
         const response = await fetch("/api/square/packages", {
-          signal: controller.signal
+          signal: controller.signal,
+          cache: 'no-cache' 
         })
         
         clearTimeout(timeoutId)
@@ -54,7 +55,7 @@ export default function PackagesSection() {
           const errorMessage = err instanceof Error ? err.message : "Failed to load packages"
           setError(errorMessage)
         }
-        console.error("Package fetch error:", err)
+        
       } 
     })()
   }, [])
@@ -115,7 +116,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
             {/* Package Image - using placeholder */}
           { pkg.packageImage &&
 
-            <Image src={pkg.packageImage} fill alt={pkg.name} />
+            <Image src={pkg.packageImage} fill alt={pkg.name} sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
           }
           </div>
         </div>

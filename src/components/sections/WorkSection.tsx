@@ -17,7 +17,7 @@ export default async function WorkSection() {
         title,
         image
       }
-    `, {}, { next: { revalidate: 60 } })
+    `)
 
     // Don't render if no recent work
     if (!recentWorks || recentWorks.length === 0) {
@@ -47,13 +47,14 @@ export default async function WorkSection() {
                     src={urlFor(work.image).url()}
                     alt={work.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover"
                   />
                 </div>
 
                 {/* Service Name */}
                 <div className="px-2">
-                  <h3 className="text-lg underline md:text-xl font-light font-poppins text-primary leading-relaxed">
+                  <h3 className="text-lg md:text-xl font-light font-poppins text-primary leading-relaxed">
                     {work.title}
                   </h3>
                 </div>
@@ -69,7 +70,6 @@ export default async function WorkSection() {
       </section>
     )
   } catch (error) {
-    console.error('Error loading recent work:', error)
     return null
   }
 }

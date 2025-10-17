@@ -20,7 +20,7 @@ export default function GallerySection() {
                 src="/gallery-1x1.webp"
                 alt="Spa tools and products"
                 fill
-                sizes='(100vw)'
+                sizes="(min-width: 1024px) 25vw"
                 className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -29,7 +29,7 @@ export default function GallerySection() {
                 src="/gallery-2x1.webp"
                 alt="Eye beauty treatment"
                 fill
-                sizes='(100vw)'
+                sizes="(min-width: 1024px) 25vw"
                 className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -41,7 +41,7 @@ export default function GallerySection() {
               src="/gallery-main.webp"
               alt="Eyelash extension treatment"
               fill
-              sizes='(100vw)'
+              sizes="(min-width: 1024px) 40vw"
               className="object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>
@@ -53,6 +53,7 @@ export default function GallerySection() {
                 src="/gallery-1x2.webp"
                 alt="Beautiful eyelashes"
                 fill
+                sizes="(min-width: 1024px) 20vw"
                 className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -61,6 +62,7 @@ export default function GallerySection() {
                 src="/gallery-1x3.webp"
                 alt="Facial treatment"
                 fill
+                sizes="(min-width: 1024px) 20vw"
                 className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -69,6 +71,7 @@ export default function GallerySection() {
                 src="/gallery-2x2.webp"
                 alt="Eyebrow treatment"
                 fill
+                sizes="(min-width: 1024px) 20vw"
                 className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -77,6 +80,7 @@ export default function GallerySection() {
                 src="/gallery-3x3.webp"
                 alt="Eye beauty"
                 fill
+                sizes="(min-width: 1024px) 20vw"
                 className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -86,25 +90,25 @@ export default function GallerySection() {
         {/* Gallery Grid - Mobile/Tablet Layout */}
         <div className="lg:hidden grid grid-cols-2 gap-2 sm:gap-3">
           <div className="relative overflow-hidden rounded-sm h-40 sm:h-48 md:h-56">
-            <Image src="/gallery-1x1.webp" alt="Spa tools and products" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+            <Image src="/gallery-1x1.webp" alt="Spa tools and products" fill sizes="(max-width: 1024px) 50vw" className="object-cover hover:scale-105 transition-transform duration-300" />
           </div>
           <div className="relative overflow-hidden rounded-sm h-40 sm:h-48 md:h-56">
-            <Image src="/gallery-2x1.webp" alt="Eye beauty treatment" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+            <Image src="/gallery-2x1.webp" alt="Eye beauty treatment" fill sizes="(max-width: 1024px) 50vw" className="object-cover hover:scale-105 transition-transform duration-300" />
           </div>
           <div className="relative overflow-hidden rounded-sm h-80 col-span-2">
-            <Image src="/gallery-main.webp" alt="Eyelash extension treatment" fill sizes='(100vw)' className="object-cover hover:scale-105 transition-transform duration-300" />
+            <Image src="/gallery-main.webp" alt="Eyelash extension treatment" fill sizes="(max-width: 1024px) 100vw" className="object-cover hover:scale-105 transition-transform duration-300" />
           </div>
           <div className="relative overflow-hidden rounded-sm h-40 sm:h-48 md:h-56">
-            <Image src="/gallery-1x2.webp" alt="Beautiful eyelashes" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+            <Image src="/gallery-1x2.webp" alt="Beautiful eyelashes" fill sizes="(max-width: 1024px) 50vw" className="object-cover hover:scale-105 transition-transform duration-300" />
           </div>
           <div className="relative overflow-hidden rounded-sm h-40 sm:h-48 md:h-56">
-            <Image src="/gallery-1x3.webp" alt="Facial treatment" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+            <Image src="/gallery-1x3.webp" alt="Facial treatment" fill sizes="(max-width: 1024px) 50vw" className="object-cover hover:scale-105 transition-transform duration-300" />
           </div>
           <div className="relative overflow-hidden rounded-sm h-40 sm:h-48 md:h-56">
-            <Image src="/gallery-2x2.webp" alt="Facial treatment" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+            <Image src="/gallery-2x2.webp" alt="Facial treatment" fill sizes="(max-width: 1024px) 50vw" className="object-cover hover:scale-105 transition-transform duration-300" />
           </div>
           <div className="relative overflow-hidden rounded-sm h-40 sm:h-48 md:h-56">
-            <Image src="/gallery-3x3.webp" alt="Facial treatment" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+            <Image src="/gallery-3x3.webp" alt="Facial treatment" fill sizes="(max-width: 1024px) 50vw" className="object-cover hover:scale-105 transition-transform duration-300" />
           </div>
         </div>
       </section>
@@ -113,16 +117,16 @@ export default function GallerySection() {
       <section className="py-0 mt-2">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           <div className="relative overflow-hidden aspect-[4/3]">
-            <Image src="/gallery-1.webp" alt="Eyebrow treatment" fill className="object-cover" />
+            <Image src="/gallery-1.webp" alt="Eyebrow treatment" fill sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw" className="object-cover" />
           </div>
           <div className="relative overflow-hidden aspect-[4/3]">
-            <Image src="/gallery-2.webp" alt="Eyelash extension process" fill className="object-cover" />
+            <Image src="/gallery-2.webp" alt="Eyelash extension process" fill sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw" className="object-cover" />
           </div>
           <div className="relative overflow-hidden aspect-[4/3]">
-            <Image src="/facial.webp" alt="Facial treatment" fill className="object-cover" />
+            <Image src="/facial.webp" alt="Facial treatment" fill sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw" className="object-cover" />
           </div>
           <div className="relative overflow-hidden aspect-[4/3]">
-            <Image src="/threading.webp" alt="Spa relaxation treatment" fill className="object-cover" />
+            <Image src="/threading.webp" alt="Spa relaxation treatment" fill sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw" className="object-cover" />
           </div>
         </div>
       </section>

@@ -111,7 +111,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     })
   } catch (error: unknown) {
     const squareError = error as SquareError
-    console.error("Square catalog error:", squareError)
+
     return NextResponse.json(
       { error: squareError?.message || "Failed to fetch catalog" },
       { status: 500 }
@@ -144,7 +144,6 @@ export async function POST(req: NextRequest) {
     })
   } catch (error: unknown) {
     const squareError = error as SquareError
-    console.error("Square catalog search error:", squareError)
     return NextResponse.json(
       { error: squareError?.message || "Failed to search catalog" },
       { status: 500 }
